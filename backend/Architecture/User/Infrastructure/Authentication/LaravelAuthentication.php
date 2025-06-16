@@ -16,6 +16,7 @@ class LaravelAuthentication implements AuthenticationInterface
     public function getGeneratedUserToken(string $email): string
     {
         $user = User::where('email', $email)->firstOrFail();
+
         return $user->createToken('auth_token')->plainTextToken;
     }
 

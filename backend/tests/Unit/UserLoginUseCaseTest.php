@@ -3,10 +3,7 @@
 namespace Tests\Unit;
 
 use Architecture\User\Application\UserLoginUseCase;
-use Architecture\User\Application\UserRegisterUseCase;
-use Architecture\User\Domain\UserEntity;
 use Architecture\User\Infrastructure\Authentication\AuthenticationInterface;
-use Architecture\User\Infrastructure\Repository\UserRepository;
 use PHPUnit\Framework\TestCase;
 
 class UserLoginUseCaseTest extends TestCase

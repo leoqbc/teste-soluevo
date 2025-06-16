@@ -10,7 +10,8 @@ readonly class UserRegisterUseCase
     public function __construct(
         protected UserRepository $userRepository,
         protected UserEntity $userEntity
-    ) {}
+    ) {
+    }
 
     public function execute(array $data): UserEntity
     {

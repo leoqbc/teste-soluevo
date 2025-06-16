@@ -2,13 +2,11 @@
 
 namespace Architecture\User\Controller;
 
-use App\Models\User;
 use Architecture\User\Application\UserLoginUseCase;
 use Architecture\User\Application\UserLogoutUseCase;
 use Architecture\User\Application\UserRegisterUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class UserController
@@ -37,8 +35,8 @@ class UserController
         } catch (\Exception $e) {
             return response()->json([
                 'error' => [
-                    'message' => 'não foi possível realizar o cadastro'
-                ]
+                    'message' => 'não foi possível realizar o cadastro',
+                ],
             ], 500);
         }
     }
@@ -59,8 +57,8 @@ class UserController
         } catch (\Exception $e) {
             return response()->json([
                 'error' => [
-                    'message' => 'não foi possível realizar o cadastro'
-                ]
+                    'message' => 'não foi possível realizar o cadastro',
+                ],
             ], 500);
         }
     }
@@ -70,14 +68,15 @@ class UserController
         try {
             $validToken = $request->bearerToken();
             $this->userLogoutUseCase->execute($validToken);
+
             return response()->json([
-                'message' => 'Deslogado com sucesso'
+                'message' => 'Deslogado com sucesso',
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => [
-                    'message' => 'Não foi possível deslogar'
-                ]
+                    'message' => 'Não foi possível deslogar',
+                ],
             ], 500);
         }
     }

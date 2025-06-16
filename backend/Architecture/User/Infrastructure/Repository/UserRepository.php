@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class UserRepository implements RepositoryInterface
 {
     /**
-     * @param UserEntity $user
+     * @param  UserEntity  $user
      * @return UserEntity
      */
     public function save($user): object
