@@ -38,7 +38,12 @@ $ docker composer up -d
 ./exec artisan migrate
 ```
 
-## Para acessar o fron
+## Para rodar os testes unitários
+```shell
+./exec artisan test
+```
+
+## Para acessar o front
 Basta acessar: http://localhost:3000/
 
 A API está sendo servida em: http://localhost:8080/
