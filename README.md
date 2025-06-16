@@ -1,52 +1,95 @@
-# ✅ Desafio Técnico – Desenvolvedor PHP (Laravel + Front-end)
-## 💡 Descrição
-Você foi contratado para desenvolver um pequeno sistema de gerenciamento de tarefas (ToDo List) com usuários, autenticação, e um painel simples para visualizar e editar as tarefas. O foco está em boas práticas de desenvolvimento, uso correto do Laravel, aplicação de Design Patterns e estruturação de código.
+# Resolução do Desafio Técnico – Desenvolvedor PHP (Laravel + Front-end) 
+## por Leonardo Tumadjian
 
-## 🔧 Tecnologias obrigatórias
-- Laravel (v9+)
-- MySQL ou SQLite
-- React ou Vue (à sua escolha)
-- Bootstrap ou Tailwind (opcional)
+## Tecnologias usadas
+- Docker/Docker Compose
+- Laravel v12
+- PHP v8.4
+- PHPUnit para testes
+- MySQL
+- React/NextJS/Ant design
 - Git
 
-## 🎯 Requisitos Funcionais
- - Cadastro e Login de Usuário
- - Usar autenticação nativa do Laravel (Sanctum ou Breeze, por exemplo).
- - Front-end simples para login/cadastro.
- - CRUD de Tarefas
- - Cada usuário pode cadastrar, editar, visualizar e deletar suas tarefas.
- - Uma tarefa tem: título, descrição, status (pendente/concluída), prazo.
- - Filtros e ordenação
- - Permitir filtrar tarefas por status e ordenar por prazo.
- - Front-end separado (SPA ou no mesmo projeto)
- - Utilizar Vue ou React.
- - Comunicação com a API via Axios ou Fetch.
+## Funcionalidades implementadas
+ - Usuários, cadastro, login e gerenciamento de acesso
+ - Cadastro de Task e Visualização das tarefas e paginação
+ - Não deu tempo de fazer implementação de filtros e ordenação no backend
 
-## 🔍 O que será avaliado
- - Boas práticas de código (PSR-12, Clean Code)
- - Uso de Design Patterns (Repository, Service, DTO, etc.)
- - Conhecimento de Laravel (Eloquent, Middleware, Migrations, Seeders, Policies)
- - Modelagem de banco de dados
- - Documentação do projeto (README.md)
- - Uso correto de Git (commits organizados e mensagens claras)
- - Separação de responsabilidades (controllers enxutos, lógica em services ou actions)
- - Consumo de API no front com controle básico de estado
- - Deploy simples ou instruções para rodar local
+## Entrega
+ - Código no GitHub.
+ - Criado um README.md:
+ - Compartilhado o link do repositório.
 
-## 📦 Entrega
- - Suba o código no GitHub ou GitLab.
- - Crie um README.md com:
- - Passos para rodar o projeto localmente
- - Como usar a API
- - Como executar testes (se houver)
- - Compartilhe o link do repositório.
+## Como configurar o ambiente
+1. Entrar na pasta *./backend* e alterar o arquivo .env.example para .env
 
-## ⏱ Tempo sugerido
-2 a 4 horas (não esperamos algo perfeito, mas sim um projeto que demonstre domínio do stack)
+2. Instalar as dependências do projeto backend
+```composer install```
 
-## ✅ Bônus (não obrigatório)
- - Testes (Feature ou Unit)
- - Uso de Docker ou Laravel Sail
- - Deploy funcional (ex: Render, Vercel, Netlify, Railway)
- - Paginação de tarefa
- - CI/CD (GitHub Actions)
+3. Abrir a pasta *./frontend* alterar o arquivo example.env.local para env.local
+4. instalar dependências:
+```npm install```
+5. Na raiz do projeto executar:
+```shell
+$ docker composer up -d
+```
+6. Entrar na pasta backend e executar:
+```shell
+./exec artisan migrate
+```
+
+## Para acessar o fron
+Basta acessar: http://localhost:3000/
+
+A API está sendo servida em: http://localhost:8080/
+
+## Para conhecer a API
+```
+# cadastro de usuário
+POST localhost:8080/api/register
+
+{
+    "name": "John Doe",
+    "email": "john@gmail.com",
+    "password": "12345678",
+    "password_confirmation": "12345678"
+}
+
+-----
+
+# login
+POST localhost:8080/api/login
+
+{
+    "email": "john@gmail.com",
+    "password": "12345678"
+}
+
+----
+
+# Logout
+
+POST localhost:8080/api/logout
+Authorization: Bearer 5|Gyj2GucgVCtyktzHGbGp0U5EccFia3WSZ5X8L7aUa46364b5
+
+----
+
+# Create Task
+POST localhost:8080/api/tasks
+Authorization: Bearer 5|Gyj2GucgVCtyktzHGbGp0U5EccFia3WSZ5X8L7aUa46364b5
+
+{
+    "title": "Um titulo aqui",
+    "description": "tarefa de teste para o usuário 1",
+    "status": "concluida",
+    "due_date": "2025-06-30 10:22:42",
+    "user_id": 2
+}
+
+----
+# Busca de tarefas
+
+GET localhost:8080/api/tasks/1?page=1
+Authorization: Bearer 5|Gyj2GucgVCtyktzHGbGp0U5EccFia3WSZ5X8L7aUa46364b5
+
+```
