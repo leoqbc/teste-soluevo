@@ -32,11 +32,11 @@ class UserController
             return response()->json([
                 'access_token' => $userEntity->token,
             ], 201);
+        } catch (ValidationException $validationException) {
+            throw $validationException;
         } catch (\Exception $e) {
             return response()->json([
-                'error' => [
-                    'message' => 'não foi possível realizar o cadastro',
-                ],
+                'message' => 'não foi possível realizar o cadastro',
             ], 500);
         }
     }
@@ -56,9 +56,7 @@ class UserController
             throw $validationException;
         } catch (\Exception $e) {
             return response()->json([
-                'error' => [
-                    'message' => 'não foi possível realizar o cadastro',
-                ],
+                'message' => 'não foi possível realizar o cadastro',
             ], 500);
         }
     }
@@ -74,9 +72,7 @@ class UserController
             ]);
         } catch (\Exception $e) {
             return response()->json([
-                'error' => [
-                    'message' => 'Não foi possível deslogar',
-                ],
+                'message' => 'não foi possível realizar o cadastro',
             ], 500);
         }
     }
