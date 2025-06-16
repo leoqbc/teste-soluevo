@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Architecture\Task\Application\RegisterTaskUseCase;
 use Architecture\User\Application\UserLoginUseCase;
 use Architecture\User\Application\UserRegisterUseCase;
 use Architecture\User\Domain\UserEntity;
@@ -22,6 +23,10 @@ class UseCasesServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(UserLoginUseCase::class, function (ContainerInterface $container) {
+            return new UserLoginUseCase($container->get(AuthenticationInterface::class));
+        });
+
+        $this->app->bind(RegisterTaskUseCase::class, function (ContainerInterface $container) {
             return new UserLoginUseCase($container->get(AuthenticationInterface::class));
         });
     }
