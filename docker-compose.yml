@@ -12,6 +12,16 @@ services:
     environment:
       PHP_DISPLAY_ERRORS: 1
 
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./frontend:/app"
+    command: "npm run dev"
+    tty: true
+
   database:
     image: mariadb:11.7.2
     ports:

@@ -55,12 +55,11 @@ const Home = () => {
                             {/*<a href="">Forgot password</a>*/}
                         </Flex>
                     </Form.Item>
-                    {errorMessage ?
+                    {errorMessage &&
                         <Form.Item>
                             <Alert message={errorMessage} type="error" showIcon />
                         </Form.Item>
-                    : null}
-
+                    }
                     <Form.Item>
                         <Button block type="primary" htmlType="submit">
                             Logar
