@@ -5,6 +5,8 @@ import {Alert, Flex, FormProps} from 'antd';
 import { Button, Checkbox, Form, Input } from 'antd';
 import Card from './components/Card';
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import http from './http/request';
+import {redirect} from "next/navigation";
 
 type FieldType = {
     email?: string;
@@ -15,8 +17,19 @@ type FieldType = {
 const Home = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
-    const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-        setErrorMessage('Erro ao fazer login.');
+    const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+
+        const response = await http.post('/login', values);
+        if (response.status !== 200) {
+            setErrorMessage('Não foi possível fazer o login. Tente novamente mais tarde.');
+            return;
+        }
+
+        const body = await response.json();
+
+        localStorage.setItem('token', body.token);
+
+        redirect('/tasks');
     };
 
     return (
